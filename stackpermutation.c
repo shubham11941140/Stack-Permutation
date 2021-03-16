@@ -14,6 +14,7 @@ and find out an expression for the number of stack permutations. */
 
 /* Request you to follow the instructions of read the instructions of readMe file and then 
 execute */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -215,11 +216,16 @@ long long int com(int n)
     p/=(n+1);
     return p;
 }
+
 int pop(int a[],int s[],int q[],int ,int ,int);
+
 int push(int a[],int s[],int q[],int ,int ,int);
+
 int operate(int a[],int s[],int q[],int ,int ,int);
+
 int n;
 long long int count=0;
+
 int main()
 {
     int i,a1,s1,q1;
@@ -228,31 +234,39 @@ int main()
     printf("\nEnter the value of k as mentioned in the question: ");
     scanf("%d",&n);
     printf("\nEnter your array of %d integers: ",n);
+
     int a[n],s[n],q[n];
+
     // Taking the complete input in the form of an array
     for(i=0;i<n;i++)
     {
         scanf("%d",&a[i]);
     }
     printf("\nPrinting all sets of outputs:\n");
+
     // Converting the entire input array into the input queue
     for(i=0;i<n;i++)
     {
         enqueue_input(a[i]);
     }
+
     // defining extra variables to be used further in the stack permutaton
     a1=n;
     s1=0;
     q1=0;
+
     // This is the final function call after which the entire stack permutation is generated
     // Written as operate function
     operate(a,s,q,a1,s1,q1);
+
     // This operation algorithm is using stack ADT operations
     // The printing is completed and compilation is terminated
     // At the end is 
     return 0;
+
     // Hopefully the output matches we get our answer
 }
+
 int operate(int a[],int s[],int q[],int a1,int s1,int q1)
 {
     int i;
@@ -281,7 +295,6 @@ int operate(int a[],int s[],int q[],int a1,int s1,int q1)
             {
                 printf("The total number of stack permutations as printed above are: %lld\n",count);                
             }
-
             return 0;
         }
         else
@@ -298,37 +311,39 @@ int operate(int a[],int s[],int q[],int a1,int s1,int q1)
     }
     else if(a1==0)
     {
-         int a2[n],s2[n],q2[n],i;
-            for(i=0;i<n;i++)
-            {
-                a2[i]=a[i];
-                s2[i]=s[i];
-                q2[i]=q[i];
-            }
+        int a2[n],s2[n],q2[n],i;
+        for(i=0;i<n;i++)
+        {
+            a2[i]=a[i];
+            s2[i]=s[i];
+            q2[i]=q[i];
+        }
         pop(a2,s2,q2,a1,s1,q1);
     }
     else
-    {    int a2[n],s2[n],q2[n],i;
-            for(i=0;i<n;i++)
-            {
-                a2[i]=a[i];
-                s2[i]=s[i];
-                q2[i]=q[i];
-            }
-         push(a2,s2,q2,a1,s1,q1);
-         int a3[n],s3[n],q3[n];
-            for(i=0;i<n;i++)
-            {
-                a3[i]=a[i];
-                s3[i]=s[i];
-                q3[i]=q[i];
-            }
+    {    
+		int a2[n],s2[n],q2[n],i;
+        for(i=0;i<n;i++)
+        {
+            a2[i]=a[i];
+            s2[i]=s[i];
+            q2[i]=q[i];
+        }
+        push(a2,s2,q2,a1,s1,q1);
+        int a3[n],s3[n],q3[n];
+        for(i=0;i<n;i++)
+        {
+            a3[i]=a[i];
+            s3[i]=s[i];
+            q3[i]=q[i];
+        }
         pop(a3,s3,q3,a1,s1,q1);
     }
     return 0;
 }
+
 int push(int a[],int s[],int q[],int a1,int s1,int q1)
-  {
+{
     s[s1]=a[0];
     s1++;
     int i;
@@ -338,15 +353,15 @@ int push(int a[],int s[],int q[],int a1,int s1,int q1)
     }
     a1--;
     int a3[n],s3[n],q3[n];
-            for(i=0;i<n;i++)
-            {
-                a3[i]=a[i];
-                s3[i]=s[i];
-                q3[i]=q[i];
-            }
+    for(i=0;i<n;i++)
+    {
+        a3[i]=a[i];
+        s3[i]=s[i];
+        q3[i]=q[i];
+    }
     operate(a3,s3,q3,a1,s1,q1);
     return 0;
-  }
+}
 
 int pop(int a[],int s[],int q[],int a1,int s1,int q1)
 {
@@ -354,14 +369,12 @@ int pop(int a[],int s[],int q[],int a1,int s1,int q1)
     s1--;
     q1++;
     int a3[n],s3[n],q3[n],i;
-            for(i=0;i<n;i++)
-            {
-                a3[i]=a[i];
-                s3[i]=s[i];
-                q3[i]=q[i];
-            }
+    for(i=0;i<n;i++)
+    {
+        a3[i]=a[i];
+        s3[i]=s[i];
+        q3[i]=q[i];
+    }
     operate(a3,s3,q3,a1,s1,q1);
     return 0;
 }
-
-	
